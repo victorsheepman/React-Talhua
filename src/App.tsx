@@ -1,32 +1,22 @@
 /* eslint-disable react/react-in-jsx-scope */
+import { useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js'
 
-import reactLogo from './assets/react.svg'
-
-import './App.css'
+const supabase = createClient(
+    'https://sqrevjfizglmjxxfuvxy.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNxcmV2amZpemdsbWp4eGZ1dnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI5MTE5MDcsImV4cCI6MjAxODQ4NzkwN30.-eI2fmeRlqgwcMT2CaAF1WSYzm9jIbCEP9E-CEVugmw'
+)
 
 function App() {
-    return (
-        <>
-            <div>
-                <a href="https://react.dev" target="_blank" rel="noreferrer">
-                    <img
-                        src={reactLogo}
-                        className="logo react"
-                        alt="React logo"
-                    />
-                </a>
-            </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
-    )
+    async function getCountries() {
+        const { data } = await supabase.from('Brecelet').select()
+        console.log(data)
+    }
+    useEffect(() => {
+        getCountries()
+    }, [])
+
+    return <h1>hola</h1>
 }
 
 export default App
